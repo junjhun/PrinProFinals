@@ -1,10 +1,10 @@
 from tkinter import *
 from myFormat import *
-window =Tk()
+window = Tk()
 window.geometry("480x480")
 window.title("Home")
 
-welcomeNote=Label(window,text="Welcome to your PhoneBook",font=Fonts.fontTitle).pack()
+Label(window,text="Welcome to your PhoneBook",font=Fonts.fontTitle,pady=(100)).pack()
 
 def addContact():
     window.destroy()
