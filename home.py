@@ -9,7 +9,8 @@ class mainFrame(Frame):
         title = Label(self, text="Welcome to your Phonebook", font=Fonts.fontTitle, pady=100)
         addContactButton = Button(self, text="Add a Contact", font=Fonts.fontButton, bg="white",
                                   command=self.addContactCommand)
-        viewContactButton = Button(self, text="View your Contacts", font=Fonts.fontButton, bg="white")
+        viewContactButton = Button(self, text="View your Contacts", font=Fonts.fontButton, bg="white",
+                                   command=self.viewContactCommand)
 
         title.pack()
         addContactButton.pack()
@@ -21,11 +22,11 @@ class mainFrame(Frame):
 
     def viewContactCommand(self):
         root.destroy()
-        # import viewContact
+        import viewContact
 
 root = Tk()
-frame1 = mainFrame(root)
-frame1.pack()
+frame0 = mainFrame(root)
+frame0.pack()
 root.geometry("480x480")
 root.title("Home")
 root.mainloop()

@@ -1,6 +1,7 @@
+import csv
 from tkinter import *
 from myFormat import *
-
+root = Tk()
 class titleFrame(Frame):
     def __init__(self, container0):
         super().__init__(container0)
@@ -8,26 +9,32 @@ class titleFrame(Frame):
         titleLabel = Label(self, text="Add a Contact", font=Fonts.fontTitle, pady=50)
         titleLabel.pack()
 
+# root.fname = StringVar()
+# root.lname = StringVar()
+# root.pnumber = StringVar()
+# root.email = StringVar()
+# root.dept = StringVar()
+
 class formFrame(Frame):
     def __init__(self, container1):
         super().__init__(container1)
 
-        fname = StringVar()
-        lname = StringVar()
-        pnumber = StringVar()
-        email = StringVar()
-        dept = StringVar
+        self.fname = StringVar()
+        self.lname = StringVar()
+        self.pnumber = StringVar()
+        self.email = StringVar()
+        self.dept = StringVar()
 
         fnameLabel = Label(self, text="First Name", font=Fonts.labelFormat)
         lnameLabel = Label(self, text="Last Name", font=Fonts.labelFormat)
-        fnameEntry = Entry(self, bg="white", width=30, textvariable=fname)
-        lnameEntry = Entry(self, bg="white", width=30, textvariable=lname)
+        fnameEntry = Entry(self, bg="white", width=30, textvariable=self.fname)
+        lnameEntry = Entry(self, bg="white", width=30, textvariable=self.lname)
         pnumberLabel = Label(self, text="Phone Number: ", font=Fonts.labelFormat)
-        pnumberEntry = Entry(self, bg="white", width=30, textvariable=pnumber)
+        pnumberEntry = Entry(self, bg="white", width=30, textvariable=self.pnumber)
         emailLabel = Label(self, text="Email Address: ", font=Fonts.labelFormat)
-        emailEntry = Entry(self, bg="white", width=30, textvariable=email)
+        emailEntry = Entry(self, bg="white", width=30, textvariable=self.email)
         deptLabel = Label(self, text="Department: ", font=Fonts.labelFormat)
-        deptEntry = Entry(self, bg="white", width=30, textvariable=dept)
+        deptEntry = Entry(self, bg="white", width=30, textvariable=self.dept)
 
         fnameLabel.grid(row=0, column=0)
         lnameLabel.grid(row=1, column=0)
@@ -40,34 +47,48 @@ class formFrame(Frame):
         deptLabel.grid(row=4, column=0)
         deptEntry.grid(row=4, column=1)
 
-class buttonFrame(Frame):
-    def __init__(self, container2):
-        super().__init__(container2)
+        # root.fname = fname
+        # root.lname = lname
+        # root.pnumber = pnumber
+        # root.email = email
+        # root.dept = dept
+
+# class buttonFrame(Frame):
+#     def __init__(self, container2):
+#         super().__init__(container2)
 
         add = Button(self, text="Add Contact", font=Fonts.fontButton, command=self.add)
         cancel = Button(self, text="Cancel", font=Fonts.fontButton, command=self.cancel)
 
-        add.grid(row=0, column=0)
-        cancel.grid(row=0, column=1)
+        add.grid(row=5, column=0)
+        cancel.grid(row=5, column=1)
 
     def add(self):
-        contactsFile = open("contact.txt", "a+")
-        formFrame.__init__(self, container1="")
-        contactsFile.write(formFrame.__init__.fname)
-        contactsFile.close()
+        contactDict = {"fname": self.fname.get(),
+        "lname": self.lname.get(), "pnumber": self.pnumber.get()
+                       , "email": self.email.get(), "dept": self.dept.get()}
+        w = csv.writer(open("contacts.csv", "a+"))
+        for key, val in contactDict.items():
+            w.writerow([key, val])
+
+        # contactsFile = open("contact.txt", "a+")
+        # contactsFile.write("fname: "+self.fname.get()+", lname: "
+        #                +self.lname.get()+", pnumber: "+self.pnumber.get()+", email: "
+        #                +self.email.get()+", dept: "+self.dept.get())
+        # contactsFile.close()
+        root.destroy()
         import home
 
     def cancel(self):
         root.destroy()
         import home
 
-root = Tk()
 frame0 = titleFrame(root)
 frame0.pack()
 frame1 = formFrame(root)
 frame1.pack()
-frame2 = buttonFrame(root)
-frame2.pack(pady=30)
+# frame2 = buttonFrame(root)
+# frame2.pack(pady=30)
 root.geometry("480x480")
 root.title("Add a Contact")
 root.mainloop()
