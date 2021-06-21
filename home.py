@@ -1,20 +1,31 @@
 from tkinter import *
 from myFormat import *
-window = Tk()
-window.geometry("480x480")
-window.title("Home")
 
-Label(window,text="Welcome to your PhoneBook",font=Fonts.fontTitle,pady=(100)).pack()
+class mainFrame(Frame):
 
-def addContact():
-    window.destroy()
-    import addContact
+    def __init__(self, container):
+        super().__init__(container)
 
-# Button for Add a Contact
-Button(window,text="Add a Contact",bg='white',font=Fonts.fontButton,command=addContact).pack()
+        title = Label(self, text="Welcome to your Phonebook", font=Fonts.fontTitle, pady=100)
+        addContactButton = Button(self, text="Add a Contact", font=Fonts.fontButton, bg="white",
+                                  command=self.addContactCommand)
+        viewContactButton = Button(self, text="View your Contacts", font=Fonts.fontButton, bg="white")
 
-# Button for View Contacts
-Button(window,text="View Contacts",bg='white',font=Fonts.fontButton).pack()
+        title.pack()
+        addContactButton.pack()
+        viewContactButton.pack()
 
+    def addContactCommand(self):
+        root.destroy()
+        import addContact
 
-window.mainloop()
+    def viewContactCommand(self):
+        root.destroy()
+        # import viewContact
+
+root = Tk()
+frame1 = mainFrame(root)
+frame1.pack()
+root.geometry("480x480")
+root.title("Home")
+root.mainloop()
