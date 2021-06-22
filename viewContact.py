@@ -54,6 +54,8 @@ class viewContact(Frame):
         deleteButton = Button(self,text="Delete Contact", font=Fonts.fontButton, bg="white",
                               command=self.delete_item)
         deleteButton.grid(row=6, column=1)
+        editButton = Button(self, text="Edit Contact", font=Fonts.fontButton, bg="white")
+        editButton.grid(row=7,column=0,columnspan=2)
 
     def view_item(self):
         selectedContact = self.contactListBox.curselection()
