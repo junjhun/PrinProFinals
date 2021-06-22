@@ -27,14 +27,14 @@ class viewContact(Frame):
 
         fnameLabel = Label(self, text="First Name", font=Fonts.labelFormat)
         lnameLabel = Label(self, text="Last Name", font=Fonts.labelFormat)
-        fnameText = Label(self, bg="white", width=30, text=self.fname.get())
-        lnameText = Label(self, bg="white", width=30, text=self.lname.get())
+        fnameText = Label(self, bg="white", width=30, textvariable=self.fname)
+        lnameText = Label(self, bg="white", width=30, textvariable=self.lname)
         pnumberLabel = Label(self, text="Phone Number: ", font=Fonts.labelFormat)
-        pnumberText = Label(self, bg="white", width=30, text=self.pnumber.get())
+        pnumberText = Label(self, bg="white", width=30, textvariable=self.pnumber)
         emailLabel = Label(self, text="Email Address: ", font=Fonts.labelFormat)
-        emailText = Label(self, bg="white", width=30, text=self.email.get())
+        emailText = Label(self, bg="white", width=30, textvariable=self.email)
         deptLabel = Label(self, text="Department: ", font=Fonts.labelFormat)
-        deptText = Label(self, bg="white", width=30, text=self.dept.get())
+        deptText = Label(self, bg="white", width=30, textvariable=self.dept)
 
         fnameLabel.grid(row=1, column=0)
         lnameLabel.grid(row=2, column=0)
@@ -74,6 +74,7 @@ class viewContact(Frame):
         self.dept.set(contactDict['dept'])
         print (self.fname.get())
         print (self.lname.get())
+
 
 root = Tk()
 frame0 = titleFrame(root)
