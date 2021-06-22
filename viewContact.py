@@ -58,30 +58,20 @@ class viewContact(Frame):
         index = selectedContact[0]
         value = self.contactListBox.get(index)
         print (value)
+        # contactDict = {}
+        file = open(value, 'r')
+        reader = csv.DictReader(file)
+        # print (file)
+        orderedDict = list(reader)[0]
+        contactDict = dict(orderedDict)
+        # contactDict = {rows[0]:rows[1] for rows in reader}
+        print (contactDict)
 
-        with open(value, 'r') as data:
-            for line in csv.DictReader(data):
-                print(line)
-
-        # with open(value, 'r') as data:
-        #     contactDict = {}
-            # for line in csv.reader(data):
-            #     contactDict.append(dict(line))
-            #     print (line)
-                # contactDict.add(line)
-                # contactDict = dict(line.insert())
-                # self.fname = line.get[1]
-        # with open(value) as file:
-        #     keys = ['fname','lname','pnumber','email','dept']
-        #     reader = csv.DictReader(file, fieldnames=keys)
-        #     results = []
-        #     for row in reader:
-        #         results.append(dict(row))
-        #         return results
-        #     print (results)
-
-
-
+        self.fname.set = contactDict['fname']
+        self.lname.set = contactDict['lname']
+        self.pnumber.set = contactDict['pnumber']
+        self.email.set = contactDict['email']
+        self.dept.set = contactDict['dept']
 
 root = Tk()
 frame0 = titleFrame(root)
