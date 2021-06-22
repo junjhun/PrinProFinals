@@ -27,14 +27,14 @@ class viewContact(Frame):
 
         fnameLabel = Label(self, text="First Name", font=Fonts.labelFormat)
         lnameLabel = Label(self, text="Last Name", font=Fonts.labelFormat)
-        fnameText = Label(self, bg="white", width=30, text=self.fname)
-        lnameText = Label(self, bg="white", width=30, text=self.lname)
+        fnameText = Label(self, bg="white", width=30, text=self.fname.get())
+        lnameText = Label(self, bg="white", width=30, text=self.lname.get())
         pnumberLabel = Label(self, text="Phone Number: ", font=Fonts.labelFormat)
-        pnumberText = Label(self, bg="white", width=30, text=self.pnumber)
+        pnumberText = Label(self, bg="white", width=30, text=self.pnumber.get())
         emailLabel = Label(self, text="Email Address: ", font=Fonts.labelFormat)
-        emailText = Label(self, bg="white", width=30, text=self.email)
+        emailText = Label(self, bg="white", width=30, text=self.email.get())
         deptLabel = Label(self, text="Department: ", font=Fonts.labelFormat)
-        deptText = Label(self, bg="white", width=30, text=self.dept)
+        deptText = Label(self, bg="white", width=30, text=self.dept.get())
 
         fnameLabel.grid(row=1, column=0)
         lnameLabel.grid(row=2, column=0)
@@ -67,11 +67,13 @@ class viewContact(Frame):
         # contactDict = {rows[0]:rows[1] for rows in reader}
         print (contactDict)
 
-        self.fname.set = contactDict['fname']
-        self.lname.set = contactDict['lname']
-        self.pnumber.set = contactDict['pnumber']
-        self.email.set = contactDict['email']
-        self.dept.set = contactDict['dept']
+        self.fname.set(contactDict['fname'])
+        self.lname.set(contactDict['lname'])
+        self.pnumber.set(contactDict['pnumber'])
+        self.email.set(contactDict['email'])
+        self.dept.set(contactDict['dept'])
+        print (self.fname.get())
+        print (self.lname.get())
 
 root = Tk()
 frame0 = titleFrame(root)
