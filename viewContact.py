@@ -57,8 +57,12 @@ class viewContact(Frame):
         selectedContact = self.contactListBox.curselection()
         index = selectedContact[0]
         value = self.contactListBox.get(index)
-        # contactDict = {}
         print (value)
+
+        with open(value, 'r') as data:
+            for line in csv.DictReader(data):
+                print(line)
+
         # with open(value, 'r') as data:
         #     contactDict = {}
             # for line in csv.reader(data):
@@ -67,16 +71,14 @@ class viewContact(Frame):
                 # contactDict.add(line)
                 # contactDict = dict(line.insert())
                 # self.fname = line.get[1]
-        with open(value) as file:
-            keys = ['fname','lname','pnumber','email','dept']
-            reader = csv.DictReader(file, fieldnames=keys)
-
-            results = []
-            for row in reader:
-                results.append(dict(row))
-            return results
-        rows = self.view_item()
-        print(rows)
+        # with open(value) as file:
+        #     keys = ['fname','lname','pnumber','email','dept']
+        #     reader = csv.DictReader(file, fieldnames=keys)
+        #     results = []
+        #     for row in reader:
+        #         results.append(dict(row))
+        #         return results
+        #     print (results)
 
 
 

@@ -79,10 +79,16 @@ class formFrame(Frame):
             "lname": self.lname.get(), "pnumber": self.pnumber.get()
                            , "email": self.email.get(), "dept": self.dept.get()}
             # w = csv.writer(open(f"source/{self.fname.get()}_{self.lname.get()}.csv", "a+"))
+            print (contactDict)
+            print (contactDict.get('fname'))
             with open(f'source/{self.fname.get()}_{self.lname.get()}.csv', 'a+') as f:
-                writer = csv.writer(f)
-                for k, v in contactDict.items():
-                    writer.writerow([k, v])
+                # writer = csv.writer(f)
+                # keys = ['fname','lname','pnumber','email','dept']
+                writer = csv.DictWriter(f, fieldnames=contactDict.keys())
+                writer.writeheader()
+                writer.writerow(contactDict)
+                # for k, v in contactDict.items():
+                #     writer.writerows(k, v)
             # for key, val in contactDict.items():
             #     w.writerow([key, val])
             # contactsFile = open("contact.txt", "a+")
