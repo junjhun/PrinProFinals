@@ -1,4 +1,7 @@
 import csv
+import tkinter.messagebox
+import os.path
+from os import path
 from tkinter import *
 from myFormat import *
 root = Tk()
@@ -64,20 +67,26 @@ class formFrame(Frame):
         cancel.grid(row=5, column=1)
 
     def add(self):
-        contactDict = {"fname": self.fname.get(),
-        "lname": self.lname.get(), "pnumber": self.pnumber.get()
-                       , "email": self.email.get(), "dept": self.dept.get()}
-        w = csv.writer(open("contacts.csv", "a+"))
-        for key, val in contactDict.items():
-            w.writerow([key, val])
-
-        # contactsFile = open("contact.txt", "a+")
-        # contactsFile.write("fname: "+self.fname.get()+", lname: "
-        #                +self.lname.get()+", pnumber: "+self.pnumber.get()+", email: "
-        #                +self.email.get()+", dept: "+self.dept.get())
-        # contactsFile.close()
-        root.destroy()
-        import home
+        # if f"{self.fname.get()}_{self.lname.get()}.csv" not in "source/":
+        file = f"{self.fname.get()}_{self.lname.get()}.csv"
+        path = f"source/{file}"
+        if os.path.isfile(path):
+            tkinter.messagebox.showinfo(title="Notice!!!",
+                                        message="Contact is already existing! Do View Contact to edit your contact there.")
+        else:
+            contactDict = {"fname": self.fname.get(),
+            "lname": self.lname.get(), "pnumber": self.pnumber.get()
+                           , "email": self.email.get(), "dept": self.dept.get()}
+            w = csv.writer(open(f"source/{self.fname.get()}_{self.lname.get()}.csv", "a+"))
+            for key, val in contactDict.items():
+                w.writerow([key, val])
+            # contactsFile = open("contact.txt", "a+")
+            # contactsFile.write("fname: "+self.fname.get()+", lname: "
+            #                +self.lname.get()+", pnumber: "+self.pnumber.get()+", email: "
+            #                +self.email.get()+", dept: "+self.dept.get())
+            # contactsFile.close()
+            root.destroy()
+            import home
 
     def cancel(self):
         root.destroy()
