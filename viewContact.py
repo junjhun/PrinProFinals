@@ -1,4 +1,5 @@
 import csv
+import os
 from tkinter import *
 from myFormat import *
 import glob
@@ -50,7 +51,8 @@ class viewContact(Frame):
         editButton = Button(self, text="View Contact", font=Fonts.fontButton, bg="white",
                             command=self.view_item)
         editButton.grid(row=6, column=0)
-        deleteButton = Button(self,text="Delete Contact", font=Fonts.fontButton, bg="white")
+        deleteButton = Button(self,text="Delete Contact", font=Fonts.fontButton, bg="white",
+                              command=self.delete_item)
         deleteButton.grid(row=6, column=1)
 
     def view_item(self):
@@ -74,6 +76,14 @@ class viewContact(Frame):
         self.dept.set(contactDict['dept'])
         print (self.fname.get())
         print (self.lname.get())
+
+    def delete_item(self):
+        selectedContact = self.contactListBox.curselection()
+        index = selectedContact[0]
+        value = self.contactListBox.get(index)
+        os.remove(value)
+        root.destroy()
+        import home
 
 
 root = Tk()
