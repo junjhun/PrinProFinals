@@ -69,6 +69,7 @@ class formFrame(Frame):
     def add(self):
         # if f"{self.fname.get()}_{self.lname.get()}.csv" not in "source/":
         file = f"{self.fname.get()}_{self.lname.get()}.csv"
+
         path = f"source/{file}"
         if os.path.isfile(path):
             tkinter.messagebox.showinfo(title="Notice!!!",
@@ -77,9 +78,13 @@ class formFrame(Frame):
             contactDict = {"fname": self.fname.get(),
             "lname": self.lname.get(), "pnumber": self.pnumber.get()
                            , "email": self.email.get(), "dept": self.dept.get()}
-            w = csv.writer(open(f"source/{self.fname.get()}_{self.lname.get()}.csv", "a+"))
-            for key, val in contactDict.items():
-                w.writerow([key, val])
+            # w = csv.writer(open(f"source/{self.fname.get()}_{self.lname.get()}.csv", "a+"))
+            with open(f'source/{self.fname.get()}_{self.lname.get()}.csv', 'a+') as f:
+                writer = csv.writer(f)
+                for k, v in contactDict.items():
+                    writer.writerow([k, v])
+            # for key, val in contactDict.items():
+            #     w.writerow([key, val])
             # contactsFile = open("contact.txt", "a+")
             # contactsFile.write("fname: "+self.fname.get()+", lname: "
             #                +self.lname.get()+", pnumber: "+self.pnumber.get()+", email: "
